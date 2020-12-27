@@ -1,12 +1,10 @@
 use crate::piece::{Piece, Color};
 use std::fmt;
 use std::default;
-// pub struct Square {
-//   piece: Piece
-// }
 
 pub struct Board {
   pieces: [[Piece; 8] ; 8],
+  to_move: Color,
 }
 
 // pub enum Status {
@@ -39,6 +37,7 @@ impl default::Default for Board {
     b.set_piece(Piece::Rook(Color::White), (7, 7));
     for i in 0..8 { b.set_piece(Piece::Pawn(Color::Black), (6, i)) }
 
+    b.to_move = Color::White;
     b
   }
 }
@@ -57,7 +56,8 @@ impl fmt::Display for Board {
 impl Board {
   pub fn new() -> Board {
     Board {
-      pieces: [[Piece::default(); 8] ; 8]
+      pieces: [[Piece::default(); 8] ; 8],
+      to_move: Color::White,
     }
   }
 
